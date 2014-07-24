@@ -26,9 +26,8 @@ angular.module('acumen.search', [])
                     results: ['$location', '$stateParams', '$search', function($location, $stateParams, $search){
                         var page = angular.isDefined($location.search('page')) ? $location.search('page') : 1;
                         var limit = angular.isDefined($location.search('limit')) ? $location.search('limit') : 20;
-                        var params = angular.isDefined($stateParams.category.searchParams) ? $stateParams.category.searchParams : {};
 
-                        return $search.results($stateParams.q, page, limit, params);
+                        return $search.results($stateParams.q, page, limit, $stateParams.category);
                     }]
                 },
                 templateUrl: 'search/search.tpl.html',

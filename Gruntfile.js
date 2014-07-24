@@ -9,10 +9,7 @@ module.exports = function(grunt){
             cssdir: 'dist/assets/css',
             imgdir: 'dist/assets/images',
             xsldir: 'dist/assets/xsl',
-            vendordir: 'dist/vendor',
-            ng: {
-                tpldir: 'dist/assets/js/templates'
-            }
+            vendordir: 'dist/vendor'
         },
         clean: {
             release: ['dist']
@@ -38,7 +35,7 @@ module.exports = function(grunt){
                     process: true
                 },
                 src: '<%= src.tpl.app %>',
-                dest: '<%= dist.ng.tpldir %>/acumen.js',
+                dest: '<%= dist.jsdir %>/acumen-templates.js',
                 module: 'templates.acumen'
             },
             vendor: {
@@ -46,7 +43,7 @@ module.exports = function(grunt){
                     base: 'src/vendor'
                 },
                 src: '<%= src.tpl.vendor %>',
-                dest: '<%= dist.ng.tpldir %>/vendor.js',
+                dest: '<%= dist.jsdir %>/vendor-templates.js',
                 module: 'templates.vendor'
             }
         },
@@ -69,6 +66,13 @@ module.exports = function(grunt){
             vendor_css: {
                 src: '<%= src.css.vendor %>',
                 dest: '<%= dist.cssdir %>/vendor.css'
+            },
+            index:{
+                src: '<%= src.index %>',
+                dest: '<%= dist.dir %>/index.html',
+                options: {
+                    process: true
+                }
             }
         }
     });

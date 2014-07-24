@@ -5,4 +5,4 @@ angular.module('acumen.home', [])
             url: '',
             templateUrl: 'home/home.tpl.html'
         })
-    }])
+    }]);

@@ -71,27 +71,32 @@ angular.module('service.search', [])
     })
 
     .factory('$search', ['Restangular', function(Restangular){
-        var searchState = {};
+        var searchState;
+        var category;
         return {
-            results: function(q, page, limit, params){
-                params = angular.isDefined(params) ? params : {};
-
+            results: function(q, page, limit, cat){
+                var result;
                 var search = Restangular.one('search', q).one('page', params.page).one('limit', params.limit);
-                angular.forEach(params, function(val, key){
+
+                angular.forEach(cat.searchParams, function(val, key){
                     if (angular.isArray(val)){
                         val = val.join(' AND ');
                     }
                     search.one(key, val);
                 })
-                var result = search.getList();
 
-                angular.extend(result.metadata, {q: q, page: page, limit: limit, params: params});
+                result = search.getList();
+                angular.extend(result.metadata, {q: q, page: page, limit: limit});
+
                 searchState = result.metadata;
-
+                category = cat;
                 return result;
             },
             state: function(){
                 return searchState;
+            },
+            category: function(){
+                return category;
             }
         }
     }])
