@@ -1,0 +1,32 @@
+{
+  "name": "acumen_ui",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ualibweb/acumen_ui",
+  "authors": [
+    "Will Jones <will@8bitsquid.com>"
+  ],
+  "description": "Acumen's front end ui",
+  "main": "dist/app.js",
+  "keywords": [
+    "acumen"
+  ],
+  "license": "ECL-2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-cache": "~3.1.0",
+    "angular-mousewheel": "~1.0.4",
+    "angular-loading-bar": "~0.4.3",
+    "angular-ui-router": "~0.2.10",
+    "angular-ui-bootstrap": "~0.11.0",
+    "bootstrap": "~3.2.0",
+    "mediaelement": "~2.14.2",
+    "restangular": "~1.4.0"
+  }
+}
