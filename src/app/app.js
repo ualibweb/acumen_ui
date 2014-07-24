@@ -1,4 +1,5 @@
 angular.module('acumen', [
+        'acumen.home',
         'acumen.directives',
         'ui.router',
         'ui.bootstrap',

@@ -22,16 +22,28 @@ angular.module('acumen.search', [])
                         value: '*:*'
                     }
                 },
-                resolve: ['$location', '$stateParams', '$search', function($location, $stateParams, $search){
-                    var page = angular.isDefined($location.search('page')) ? $location.search('page') : 1;
-                    var limit = angular.isDefined($location.search('limit')) ? $location.search('limit') : 20;
-                    var params = angular.isDefined($stateParams.category.fq) ? $stateParams.category.fq : {};
+                resolve: {
+                    results: ['$location', '$stateParams', '$search', function($location, $stateParams, $search){
+                        var page = angular.isDefined($location.search('page')) ? $location.search('page') : 1;
+                        var limit = angular.isDefined($location.search('limit')) ? $location.search('limit') : 20;
+                        var params = angular.isDefined($stateParams.category.searchParams) ? $stateParams.category.searchParams : {};
 
-                    return $search.results($stateParams.q, page, limit, params);
-                }],
+                        return $search.results($stateParams.q, page, limit, params);
+                    }]
+                },
                 templateUrl: 'search/search.tpl.html',
-                controller: ['$scope', '$stateParams', function($scope, $stateParams){
+                controller: ['$scope', '$stateParams', 'results', function($scope, $stateParams, results){
+                    $scope.results = results;
+                    $scope.search = {
+                        page: results.metadata.page,
+                        limit: results.metadata.limit,
+                        numFound: results.metadata.numFound,
+                        queryTime: results.metadata.queryTime
+                    };
 
+                    $scope.pageChanged = function(){
+                        $location.search('page', $scope.page);
+                    };
                 }]
             })
     }])

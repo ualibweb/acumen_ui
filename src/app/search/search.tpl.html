@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <p class="text-right"><small class="text-muted">{{numFound}} item(s) found in {{queryTime}}s</small></p>
-    <div class="media" ng-repeat="doc in results">
+    <p class="text-right"><small class="text-muted">{{search.numFound}} item(s) found in {{search.queryTime}}s</small></p>
+    <div class="media" ng-repeat="doc in results track by doc.link">
         <div class="thumbnail-results pull-left">
             <div class="pull-right">
                 <a href="#/{{doc.link}}" class="search-thumbnail-wrapper">
@@ -32,5 +32,5 @@
     </div>
 </div>
 <div class="text-center" ng-show="numFound > limit">
-    <div pagination class="pagination" ng-change="pageChanged()" total-items="numFound" items-per-page="limit" ng-model="page" max-size="16" boundary-links="true" rotate="false"></div>
+    <div pagination class="pagination" ng-change="pageChanged()" total-items="search.numFound" items-per-page="search.limit" ng-model="search.page" max-size="16" boundary-links="true" rotate="false"></div>
 </div>
