@@ -1,0 +1,19 @@
+<form role="form-control" ng-submit="search()">
+    <div class="input-group input-group-lg">
+        <div class="input-group-btn" dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="disabled">
+                {{selected.title}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-left">
+                <li class="dropdown-header">Search categories:</li>
+                <li class="search-box-category" ng-repeat="(key, cat) in categories">
+                    <a href="#" ng-click="select($event)">{{cat.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <input name="q" type="text" class="form-control" id="q" placeholder="{{selected.placeHolder}}" ng-model="query">
+        <div class="input-group-btn">
+            <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+    </div>
+</form>
