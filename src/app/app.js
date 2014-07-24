@@ -1,15 +1,16 @@
 angular.module('acumen', [
         'acumen.home',
+        'acumen.services',
         'acumen.directives',
         'ui.router',
         'ui.bootstrap',
         'chieffancypants.loadingBar',
         'ngAnimate',
-        'restangular'
+        'restangular',
+        'angular-data.DSCacheFactory'
     ])
 
     .config(['RestangularProvider', function (RestangularProvider){
-        RestangularProvider.setDefaultHttpFields({cache: true});
         RestangularProvider.setBaseUrl(ENV_PATH + 'api');
 
         RestangularProvider.addResponseInterceptor( function(data, operation, what, url, response, deferred) {
@@ -31,4 +32,8 @@ angular.module('acumen', [
             }
             return extractedData;
         });
+    }])
+
+    .run(['$cache', '$rootScope', function($cache, $rootScope){
+
     }])

@@ -70,9 +70,7 @@ angular.module('service.search', [])
         }
     })
 
-    .factory('$search', ['Restangular', function(Restangular){
-        var searchState;
-        var category;
+    .factory('$search', ['Restangular', '$cache', function(Restangular, $cache){
         return {
             results: function(q, page, limit, cat){
                 var result;
@@ -85,18 +83,17 @@ angular.module('service.search', [])
                     search.one(key, val);
                 })
 
-                result = search.getList();
-                angular.extend(result.metadata, {q: q, page: page, limit: limit});
+                result = search.getList().then(function(data){
+                    $cache.put('acumen.search', {
+                        page: page,
+                        limit: limit,
+                        q: q,
+                        category: cat
+                    });
+                    return data;
+                });
 
-                searchState = result.metadata;
-                category = cat;
                 return result;
-            },
-            state: function(){
-                return searchState;
-            },
-            category: function(){
-                return category;
             }
         }
     }])

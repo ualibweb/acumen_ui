@@ -1,12 +1,13 @@
 angular.module('searchBox', [])
 
-    .directive('searchBox', ['$search', '$categories', function($search, $categories){
+    .directive('searchBox', ['$cache', '$categories', function($cache, $categories){
         return {
             restrict: 'AC',
             templateUrl: 'search_box/search-box.tpl.html',
             controller: function($scope){
                 var cat = 'all';
-                $scope.selected = angular.isDefined($search.category()) ? $search.category() : $categories[cat];
+                $scope.categories = $categories;
+                $scope.selected = angular.isDefined($cache.info('acumen.search')) ? $cache.get('acumen.search') : $categories[cat];
 
                 $scope.search = function(){
                     $state.go('search', {q: $scope.query, category: cat});

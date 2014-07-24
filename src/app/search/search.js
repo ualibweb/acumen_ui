@@ -30,6 +30,9 @@ angular.module('acumen.search', [])
                         return $search.results($stateParams.q, page, limit, $stateParams.category);
                     }]
                 },
+                onEnter: ['$cache', 'results', function(){
+
+                }],
                 templateUrl: 'search/search.tpl.html',
                 controller: ['$scope', '$stateParams', 'results', function($scope, $stateParams, results){
                     $scope.results = results;
