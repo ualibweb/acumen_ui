@@ -1,0 +1,7 @@
+<div id="{{item.repo_loc}}" class="list-item" ng-class="$state.current.data.listItemCss" ng-repeat="item in list track by item.repo_loc">
+    <a ng-href="#/{{item.link}}" ng-click="select(item.repo_loc, $index)" class="thumbnail" ng-class="{'selected': $state.params.item == item.repo_loc}">
+        <p class="small page-num">{{(pager.current-1)*pager.perPage+$index+1}}</p>
+        <img ng-src="{{item.thumb_url}}" />
+        <h5 class="item-title">{{item.title|truncate:50}}</h5>
+    </a>
+</div>

@@ -14,12 +14,10 @@
         </div>
         <div class="media-body">
             <h4 class="media-heading">
-                <a ng-href="#/{{doc.link}}" class="title" title="{{doc.title}}">
-                    {{doc.title}}
-                </a>
+                <a ng-href="#/{{doc.link}}" class="title" title="{{doc.title}}" compile="doc.title"></a>
                 <small class="clearfix">{{doc.subtitle}}</small>
             </h4>
-            <p ng-show="doc.description">{{doc.description | truncate:300}}</p>
+            <p ng-show="doc.description" compile="doc.description">(don't forget to truncate from back end!)</p>
 
 
             <div class="row" ng-show="doc.details">
