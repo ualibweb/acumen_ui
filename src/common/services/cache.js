@@ -1,11 +1,5 @@
 angular.module('service.cache', [])
 
-    .config(['DSCacheFactoryProvider', function(DSCacheFactoryProvider){
-        DSCacheFactoryProvider.setCacheDefaults({
-
-        })
-    }])
-
     .run(['$http', 'DSCacheFactory', function($http, DSCacheFactory){
         DSCacheFactory('acumen', {
             maxAge: 900000, // Items added to this cache expire after 15 minutes.
@@ -17,6 +11,5 @@ angular.module('service.cache', [])
     }])
 
     .factory('$cache', ['DSCacheFactory', function(DSCacheFactory){
-        var cache = DSCacheFactory('acumen');
-        return cache;
+        return DSCacheFactory.get('acumen');
     }])
