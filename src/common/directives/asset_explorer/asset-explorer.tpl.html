@@ -1,0 +1,45 @@
+<div class="toolbar toolbar-static row">
+    <div class="list-toolbar" ng-class="$state.current.data.itemsListCss">
+        <div class="toolset">
+            <div ng-click="gridToggle()"
+                 class="tool glyphicon glyphicon-th grid-toggle"
+                 ng-class="{'selected': $state.is('collection.explorer')}"
+                 tooltip="Toggle Grid View"
+                 title="Toggle Grid View"></div>
+            <span>{{total}} items total</span>
+        </div>
+        <div class="toolset toolset-popout pull-right">
+            <div class="btn-group btn-group-sm">
+                <a rol="button"
+                   class="btn btn-default"
+                   tooltip="Printing item lists is not yet enabled">
+                    <span ng-if="$state.is('collection.explorer')" tooltip-placement="right">Print Items {{acumen.list.first}}-{{acumen.list.last}}</span> <span class="glyphicon glyphicon-print"></span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-toolbar" ng-class="$state.current.data.itemContainerCss" ng-if="$state.includes('collection.explorer.item.**')">
+        <div class="toolset">
+            <div class="btn-group btn-group-sm">
+                <a ng-href="{{acumen.item.asset_path}}"
+                   rol="button"
+                   class="btn btn-default"
+                   title="Download Item" download>Download {{acumen.item.type}} <span class="glyphicon glyphicon-download-alt"></span></a>
+                <button type="button" class="btn btn-default" disabled="disabled">{{acumen.item.size | filesize}}</button>
+            </div>
+        </div>
+        <div class="toolset toolset-title">
+            <h3>{{acumen.item.title | truncate:60}}</h3>
+        </div>
+    </div>
+
+    <div class="toolset toolset-popout toolset-global">
+        <div class="tool glyphicon glyphicon-fullscreen"
+             tooltip="Fullscreen mode has not been implemented yet"
+             tooltip-append-to-body></div>
+    </div>
+</div>
+<div class="items-container row">
+    <div class="asset-list"></div>
+    <div class="asset_viewer"></div>
+</div>

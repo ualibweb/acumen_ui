@@ -2,7 +2,7 @@ angular.module('acumen.collection', [])
 
     .config('$stateProvider', function($stateProvider){
         $stateProvider.state('colleciton', {
-            url: '{repoID:[a-zA-Z][0-9]+[_0-9]*}',
+            url: '/{repoID:[a-zA-Z][0-9]+[_0-9]*}',
             resolve: {
                 metadata: ['$stateParams', '$metadata', function($stateParams, $metadata){
                     return $metadata.get($stateParams.repoID);

@@ -37,3 +37,7 @@ angular.module('acumen', [
     .run(['$cache', '$rootScope', function($cache, $rootScope){
 
     }])
+
+    .service('acumen', [function(){
+
+    }])

@@ -1,4 +1,4 @@
-angular.module('assetExplorer', [])
+angular.module('directive.assetExplorer', ['service.assets', 'directive.assetList'])
 
     .controller('AssetExplorerCtrl', ['$scope', function($scope){
 

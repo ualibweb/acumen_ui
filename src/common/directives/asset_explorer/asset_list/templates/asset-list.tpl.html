@@ -1,10 +1,5 @@
 <div class="row">
-    <div id="{{item.repo_loc}}" class="asset-list-item" ng-class="$state.current.data.listItemCss" ng-repeat="item in list track by item.repo_loc">
-        <a ng-href="#/{{item.link}}" ng-click="select(item.repo_loc, $index)" class="thumbnail" ng-class="{'selected': $state.params.item == item.repo_loc}">
-            <p class="small page-num">{{pageNum}}</p>
-            <img ng-src="{{item.thumb_url}}" />
-            <h5 class="item-title">{{title}}</h5>
-        </a>
+    <div class="asset-list-item" ng-repeat="asset in list track by asset.repo_loc">
     </div>
 
     <div class="col-xs-12 text-center" ng-if="pager.show">
