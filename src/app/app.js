@@ -39,5 +39,28 @@ angular.module('acumen', [
     }])
 
     .service('acumen', [function(){
+        var self = this;
+        var _labels = ['collections', 'items', {'audio': 'tracks', 'video': 'clips', 'defaultLabel': 'pages'}];
 
+        this.level;
+        this.levels = {};
+
+        this.getLevel = function(repoID, assetType){
+            assetType = angular.isDefined(assetType) ? assetType : false;
+            var label;
+            var level = repoID.match(/_/g) || [];
+            level = level.length;
+
+            if (self.levels.keys().length > 0){
+                for (var i = 0; i < level; i++){
+                    if (angular.isDefined(self.levels[i]) && repoID.indexOf(self.levels[i].repoID) < 0){
+                        self.levels = {};
+                        break;
+                    }
+                }
+            }
+
+            label = level < 2 ? _labels[3][assetType] : _labels[level];
+            angular.extend(self.levels, {level: {repoID: repoID, label: label}});
+        };
     }])

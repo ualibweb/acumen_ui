@@ -1,7 +1,9 @@
 angular.module('directive.assetExplorer', ['service.assets', 'directive.assetList'])
 
-    .controller('AssetExplorerCtrl', ['$scope', function($scope){
-
+    .controller('AssetExplorerCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
+        $rootScope.$on('asset-list-loaded', function(listInfo){
+            $scope.listInfo = listInfo;
+        });
     }])
 
     .directive('assetExplorer', [function(){
